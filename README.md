@@ -1,6 +1,6 @@
 # StarMatch
 
-Angular port of react app from 
+Angular port of react app from Samer Buma @Pluralsight
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
