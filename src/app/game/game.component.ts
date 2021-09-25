@@ -21,7 +21,6 @@ export class GameComponent implements OnInit {
     const id = setInterval(() => {
       if(this.secondsLeft > 0){
         this.secondsLeft--
-        console.log('executed')
       } else{
         clearInterval(id)
       }      
