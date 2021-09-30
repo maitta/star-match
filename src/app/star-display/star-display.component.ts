@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { UtilsService } from '../service/utils.service';
+import { GameService } from '../service/game.service';
 
 @Component({
   selector: 'app-star-display',
@@ -9,16 +9,12 @@ import { UtilsService } from '../service/utils.service';
 })
 export class StarDisplayComponent implements OnInit {
 
-  stars!: number[]
+  @Input() num!: number
 
-
-  constructor(private utils: UtilsService) {
-    
-   }
+  constructor(public service: GameService) { 
+  }
 
   ngOnInit(): void {
-    const num = this.utils.random(1, 9)
-    this.stars = this.utils.range(1, num)
   }
 
 }

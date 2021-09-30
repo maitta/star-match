@@ -1,5 +1,7 @@
 <button 
     class="number"
+    (click)="handleClick()"
+    [style.background-color]="getNumberColor()"
 >
     {{num}}
-</button> 
+</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../service/game.service';
 
 @Component({
   selector: 'app-game',
@@ -7,14 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  /*gameStatus = availableNumbers.length === 0 
-      ? 'won' 
-      : secondsLeft === 0 ? 'lost' : 'active';*/
+  secondsLeft!: number  
 
-  secondsLeft!: number
-
-  constructor() { 
+  constructor(public service: GameService) { 
     this.secondsLeft = 10
+    service.secondsLeft = this.secondsLeft
   }
 
   ngOnInit(): void {
@@ -25,24 +23,12 @@ export class GameComponent implements OnInit {
     const id = setInterval(() => {
       if(this.secondsLeft > 0){
         this.secondsLeft--
+        // TODO move handling of secondsleft to the service
+        this.service.secondsLeft = this.secondsLeft
+        console.log(this.service.secondsLeft)
       } else{
         clearInterval(id)
       }      
     }, 1000)
   }
-
-  public handleClick(num: number){
-    console.log(num)
-/*
-    if(status === 'used' || gameStatus !== 'active'){
-      return;
-    }
-    const newCandidateNums = 
-          status === 'available'
-          ? candidateNumbers.concat(number)
-          : candidateNumbers.filter(cn => cn !== number);
-    
-    setGameState(newCandidateNums);*/
-  }
-
 }

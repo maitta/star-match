@@ -1,0 +1,11 @@
+<div class="game-done">
+    <div 
+      class="message"
+      [style.color]="getColor()"
+    >
+      {{service.gameStatus === 'lost' ? 'Game Over' : 'Nice'}}
+    </div>
+    <button (click)="handleClick()">
+      Play Again
+    </button>
+  </div>
