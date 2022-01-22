@@ -120,6 +120,18 @@ export class GameService {
     }
     return sums[this.random(0, sums.length)];
   }
+
+  public setUpTimer(): void{
+    const id = setInterval(() => {
+      if(this.secondsLeft > 0){
+        this.secondsLeft--
+        this.secondsLeft = this.secondsLeft
+        console.log(this.secondsLeft)
+      } else{
+        clearInterval(id)
+      }      
+    }, 1000)
+  }
 }
 
 export type numberStatus = "used" | "wrong" | "candidate" | "available"

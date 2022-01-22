@@ -7,28 +7,13 @@ import { GameService } from '../service/game.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  private TIMERINSECONDS: number = 10
 
-  secondsLeft!: number  
-
-  constructor(public service: GameService) { 
-    this.secondsLeft = 10
-    service.secondsLeft = this.secondsLeft
+  constructor(public service: GameService) {   
   }
 
   ngOnInit(): void {
-    this.setUpTimer()
-  }
-
-  private setUpTimer(): void{
-    const id = setInterval(() => {
-      if(this.secondsLeft > 0){
-        this.secondsLeft--
-        // TODO move handling of secondsleft to the service
-        this.service.secondsLeft = this.secondsLeft
-        console.log(this.service.secondsLeft)
-      } else{
-        clearInterval(id)
-      }      
-    }, 1000)
+    this.service.secondsLeft = this.TIMERINSECONDS
+    this.service.setUpTimer()
   }
 }
