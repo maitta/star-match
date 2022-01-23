@@ -14,7 +14,7 @@ export class PlayAgainComponent implements OnInit {
   }
 
   handleClick(){
-    location.reload()
+    this.service.restartGame()
   }
 
   getColor(): string {

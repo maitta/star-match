@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core'
   providedIn: 'root'
 })
 export class GameService {
-
+  
   constructor() { }
 
   _stars: number = this.random(1, 9)
@@ -129,6 +129,10 @@ export class GameService {
         clearInterval(id)
       }      
     }, 1000)
+  }
+
+  public restartGame() {
+    window.location.reload()
   }
 }
 
