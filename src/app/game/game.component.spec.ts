@@ -23,8 +23,6 @@ describe('GameComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GameComponent)
     component = fixture.componentInstance
-    // ignoring the timer which will have its own test
-    gameServiceSpy.setUpTimer.and.callFake(() => {})
     fixture.detectChanges()
   });
 
