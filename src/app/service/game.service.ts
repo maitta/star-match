@@ -7,12 +7,12 @@ export class GameService {
   
   constructor() { }
 
-  _stars: number = this.random(1, 9)
-  _availableNumbers: number[] = this.range(1, 9)
-  _candidateNumbers: number[] = []
-  _candidatesWrong!: boolean
-  _gameStatus = 'active'
-  _secondsLeft!: number
+  private _stars: number = this.random(1, 9)
+  private _availableNumbers: number[] = this.range(1, 9)
+  private _candidateNumbers: number[] = []
+  private _candidatesWrong!: boolean
+  private _gameStatus = 'active'
+  private _secondsLeft!: number
 
   get stars(): number{
     return this._stars
@@ -35,7 +35,7 @@ export class GameService {
   }
 
   get gameStatus(): GameStatus {
-    return this._availableNumbers.length === 0 
+    return this.availableNumbers.length === 0 
       ? 'won' 
       : this._secondsLeft === 0 ? 'lost' : 'active'
   }
@@ -47,10 +47,10 @@ export class GameService {
   }
 
   getNumberStatus(number: number): NumberStatus {
-    if(!this._availableNumbers.includes(number)){
+    if(!this.availableNumbers.includes(number)){
       return 'used'
     }
-    if(this._candidateNumbers.includes(number)){
+    if(this.candidateNumbers.includes(number)){
       return this.candidatesWrong ? 'wrong' : 'candidate'
     }
     return 'available'
@@ -73,11 +73,11 @@ export class GameService {
   setGameState(num: number, status: NumberStatus): void{
     const newCandidateNums = this.setCandidateNumbers(num, status)
 
-    if(this.sum(newCandidateNums) !== this._stars){
+    if(this.sum(newCandidateNums) !== this.stars){
       this._candidateNumbers = newCandidateNums
       console.log('candidateNumbers have been set...' + this._candidateNumbers)
     }else{
-      const newAvailableNums = this._availableNumbers.filter(
+      const newAvailableNums = this.availableNumbers.filter(
         n => !newCandidateNums.includes(n)
       )
       this._stars = this.randomSumIn(newAvailableNums, 9)
