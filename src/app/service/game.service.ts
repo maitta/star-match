@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
 @Injectable({
   providedIn: 'root'
@@ -34,20 +34,19 @@ export class GameService {
     return this._secondsLeft
   }
 
-  get gameStatus(): string {
+  get gameStatus(): GameStatus {
     return this._availableNumbers.length === 0 
       ? 'won' 
-      : this._secondsLeft === 0 ? 'lost' : 'active';
+      : this._secondsLeft === 0 ? 'lost' : 'active'
   }
 
   // TODO use observables
   get candidatesWrong(): boolean {
-    this._candidatesWrong = this.sum(this._candidateNumbers) > this.stars;
+    this._candidatesWrong = this.sum(this._candidateNumbers) > this.stars
     return this._candidatesWrong
   }
 
-  getNumberStatus(number: number): numberStatus {
-    //debugger
+  getNumberStatus(number: number): NumberStatus {
     if(!this._availableNumbers.includes(number)){
       return 'used'
     }
@@ -63,7 +62,7 @@ export class GameService {
     console.log('logging wrong...' + this.candidatesWrong)
   }
 
-  setCandidateNumbers(num: number, status: numberStatus): number[]{
+  setCandidateNumbers(num: number, status: NumberStatus): number[]{
     const newCandidateNumbers = 
           status === 'available'
           ? this._candidateNumbers.concat(num)
@@ -71,8 +70,7 @@ export class GameService {
           return newCandidateNumbers
   }
 
-  setGameState(num: number, status: numberStatus): void{
-    //debugger
+  setGameState(num: number, status: NumberStatus): void{
     const newCandidateNums = this.setCandidateNumbers(num, status)
 
     if(this.sum(newCandidateNums) !== this._stars){
@@ -106,19 +104,19 @@ export class GameService {
   // Given an array of numbers and a max...
   // Pick a random sum (< max) from the set of all available sums in arr
   public randomSumIn(arr: number[], max: number): number{
-    const sets: number[][] = [[]];
-    const sums = [];
+    const sets: number[][] = [[]]
+    const sums = []
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0, len = sets.length; j < len; j++) {
-        const candidateSet = sets[j].concat(arr[i]);
-        const candidateSum = this.sum(candidateSet);
+        const candidateSet = sets[j].concat(arr[i])
+        const candidateSum = this.sum(candidateSet)
         if (candidateSum <= max) {
-          sets.push(candidateSet);
-          sums.push(candidateSum);
+          sets.push(candidateSet)
+          sums.push(candidateSum)
         }
       }
     }
-    return sums[this.random(0, sums.length)];
+    return sums[this.random(0, sums.length)]
   }
 
   public setUpTimer(): void{
@@ -134,4 +132,5 @@ export class GameService {
   }
 }
 
-export type numberStatus = "used" | "wrong" | "candidate" | "available"
+export type NumberStatus = "used" | "wrong" | "candidate" | "available"
+export type GameStatus = "won" | "lost" | "active"

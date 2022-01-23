@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GameService } from '../service/game.service';
-import { numberStatus } from '../service/game.service';
+import { NumberStatus } from '../service/game.service';
 
 @Component({
   selector: 'app-number',
@@ -10,15 +10,14 @@ import { numberStatus } from '../service/game.service';
 export class NumberComponent implements OnInit {
 
   @Input() num!: number
-  status!: numberStatus
+  status!: NumberStatus
 
   colors: myColors = {
     available: 'lightgray',
     used: 'lightgreen',
     wrong: 'lightcoral',
     candidate: 'deepskyblue',
-  };
- 
+  }; 
 
   constructor(private service: GameService) {    
   }
@@ -27,11 +26,9 @@ export class NumberComponent implements OnInit {
     this.status = this.service.getNumberStatus(this.num)
   }
 
-
   public handleClick(){
-    //debugger
     if(this.status === 'used' || this.service.gameStatus !== 'active'){
-      return;
+      return
     }    
     this.service.setGameState(this.num, this.status)
   }
