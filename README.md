@@ -1,6 +1,6 @@
 # StarMatch
 
-Angular port of react app from Samer Buma @Pluralsight. 40 unit tests have also been added with a coverage of about 70%.
+Angular port of react app from Samer Buma @Pluralsight, which represents a game where the user needs to select the number of stars that are being shown to them, until all are selected and in under 10 seconds. 40 unit tests have also been added with a coverage of about 70%.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
